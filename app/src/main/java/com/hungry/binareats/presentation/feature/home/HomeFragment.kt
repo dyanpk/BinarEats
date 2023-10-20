@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.catnip.firebaseauthexample.utils.GenericViewModelFactory
+import com.hungry.binareats.R
 import com.hungry.binareats.data.network.api.datasource.BinarEatsApiDataSource
 import com.hungry.binareats.data.network.api.service.BinarEatsApiService
 import com.hungry.binareats.data.repository.MenuRepository
 import com.hungry.binareats.data.repository.MenuRepositoryImpl
 import com.hungry.binareats.databinding.FragmentHomeBinding
+import com.hungry.binareats.model.Menu
+import com.hungry.binareats.presentation.feature.detailmenu.DetailMenuActivity
+import com.hungry.binareats.presentation.feature.home.adapter.subadapter.AdapterLayoutMode
 import com.hungry.binareats.presentation.feature.home.adapter.subadapter.CategoryListAdapter
 import com.hungry.binareats.presentation.feature.home.adapter.subadapter.MenuListAdapter
 import com.hungry.binareats.utils.proceedWhen
@@ -30,9 +32,16 @@ class HomeFragment : Fragment() {
     }
 
     private val menuAdapter: MenuListAdapter by lazy {
-        MenuListAdapter{
+        MenuListAdapter(
+            layoutMode = AdapterLayoutMode.GRID,
+            itemClick = {
+                navigateToDetailMenu(it)
+            }
+        )
+    }
 
-        }
+    private fun navigateToDetailMenu(it: Menu) {
+        DetailMenuActivity.startActivity(requireContext(),it)
     }
 
     private val viewModel : HomeViewModel by viewModels {
@@ -107,7 +116,7 @@ class HomeFragment : Fragment() {
                 binding.inclMenus.layoutState.root.isVisible = true
                 binding.inclMenus.layoutState.pbLoading.isVisible = false
                 binding.inclMenus.layoutState.tvError.isVisible = true
-                binding.inclMenus.layoutState.tvError.text = "Product not found"
+                binding.inclMenus.layoutState.tvError.text = getString(R.string.menu_not_found)
                 binding.inclMenus.rvMenuList.isVisible = false
             })
         }
@@ -117,4 +126,5 @@ class HomeFragment : Fragment() {
         viewModel.getCategories()
         viewModel.getMenus()
     }
+
 }

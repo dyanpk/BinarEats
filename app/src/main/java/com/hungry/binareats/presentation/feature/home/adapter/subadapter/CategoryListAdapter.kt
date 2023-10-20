@@ -29,7 +29,8 @@ RecyclerView.Adapter<CategoryListAdapter.ItemCategoryViewHolder>(){
             ): Boolean {
                 return oldItem.hashCode() == newItem.hashCode()
             }
-        })
+        }
+        )
 
     fun submitData(data: List<Category>) {
         dataDiffer.submitList(data)

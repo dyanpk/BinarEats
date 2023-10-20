@@ -8,7 +8,7 @@ import com.hungry.binareats.model.Menu
 @Keep
 data class MenuItemResponse(
     @SerializedName("id")
-    val id: Int?,
+    val id: Int,
     @SerializedName("descOfMenu")
     val descOfMenu: String?,
     @SerializedName("locationName")
@@ -28,8 +28,9 @@ fun MenuItemResponse.toMenu() = Menu(
     nameOfMenu = this.name.orEmpty(),
     imgUrlMenu = this.productImgUrl.orEmpty(),
     priceOfMenu = this.price ?: 0.0,
-    locationOfMenu = this.locationUrl.orEmpty(),
+    locationOfMenu = this.locationName.orEmpty(),
     descOfMenu = this.descOfMenu.orEmpty(),
+    locationUrl = this.locationUrl.orEmpty()
 )
 
 
