@@ -22,4 +22,10 @@
     <string name="text_change_profile">Change Profile</string>
     <string name="text_change_password">Change Password</string>
     <string name="text_logout">Logout</string>
+    <string name="tv_header_name">Hai, Binarian</string>
+    <string name="tv_header_greeting">What do you want to eat today?</string>
+    <string name="tv_discount_30">Discount 30%</string>
+    <string name="tv_discount_desc">Order food through the app and get your discount!</string>
+    <string name="see_what_we_have">See what we have</string>
+    <string name="categories">Categories</string>
 </resources>

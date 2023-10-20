@@ -9,15 +9,15 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.catnip.firebaseauthexample.utils.GenericViewModelFactory
 import com.catnip.firebaseauthexample.utils.highLightWord
-import com.catnip.firebaseauthexample.utils.proceedWhen
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.hungry.binareats.R
 import com.hungry.binareats.data.network.firebase.auth.FirebaseAuthDataSourceImpl
 import com.hungry.binareats.data.repository.UserRepositoryImpl
 import com.hungry.binareats.databinding.ActivityRegisterBinding
-import com.hungry.binareats.presentation.feature.MainActivity
+import com.hungry.binareats.presentation.feature.main.MainActivity
 import com.hungry.binareats.presentation.feature.login.LoginActivity
+import com.hungry.binareats.utils.proceedWhen
 
 class RegisterActivity : AppCompatActivity() {
     private val binding: ActivityRegisterBinding by lazy {

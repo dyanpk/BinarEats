@@ -1,11 +1,11 @@
 package com.hungry.binareats.data.repository
 
 import android.net.Uri
-import com.catnip.firebaseauthexample.utils.ResultWrapper
-import com.catnip.firebaseauthexample.utils.proceedFlow
 import com.hungry.binareats.data.network.api.model.user.User
 import com.hungry.binareats.data.network.api.model.user.toUser
 import com.hungry.binareats.data.network.firebase.auth.FirebaseAuthDataSource
+import com.hungry.binareats.utils.ResultWrapper
+import com.hungry.binareats.utils.proceedFlow
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
