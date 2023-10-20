@@ -44,10 +44,18 @@ android {
     flavorDimensions += "env"
     productFlavors {
         create("production") {
-            buildConfigField("String", "BASE_URL", "\"https://60538cf9-b6d8-4d19-859c-5b0cf5fc999d.mock.pstmn.io\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://649510b3-1cfe-4b9e-94dd-6ab5b213b511.mock.pstmn.io\""
+            )
         }
         create("integration") {
-            buildConfigField("String", "BASE_URL", "\"https://60538cf9-b6d8-4d19-859c-5b0cf5fc999d.mock.pstmn.io\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://649510b3-1cfe-4b9e-94dd-6ab5b213b511.mock.pstmn.io\""
+            )
         }
     }
 }
@@ -77,9 +85,20 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     //rv
     implementation("androidx.recyclerview:recyclerview:1.3.1")
+    //fragment ktx
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
+    //data store
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    //room database libraries
+    implementation("androidx.room:room-ktx:2.5.2")
+    ksp("androidx.room:room-compiler:2.5.2")
     //firebase
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
+    //retrofit & okhttp
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 }

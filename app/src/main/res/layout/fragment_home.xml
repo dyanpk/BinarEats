@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:orientation="vertical">
 
         <include
@@ -28,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <include
-            android:id="@+id/incl_categories"
+            android:id="@+id/incl_menus"
             layout="@layout/item_section_menu_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

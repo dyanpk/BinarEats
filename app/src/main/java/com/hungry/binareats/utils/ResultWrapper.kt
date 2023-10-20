@@ -1,16 +1,11 @@
-package com.catnip.firebaseauthexample.utils
+package com.hungry.binareats.utils
 
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 import kotlin.Exception
 
-/**
-Written with love by Muhammad Hermas Yuda Pamungkas
-Github : https://github.com/hermasyp
- **/
 
 sealed class ResultWrapper<T>(
     val payload: T? = null,

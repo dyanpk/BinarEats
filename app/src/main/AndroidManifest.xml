@@ -22,7 +22,7 @@
             android:name=".presentation.feature.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.feature.MainActivity"
+            android:name=".presentation.feature.main.MainActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.feature.splashscreen.SplashActivity"

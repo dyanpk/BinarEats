@@ -7,11 +7,10 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.catnip.firebaseauthexample.utils.GenericViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
-import com.hungry.binareats.R
 import com.hungry.binareats.data.network.firebase.auth.FirebaseAuthDataSourceImpl
 import com.hungry.binareats.data.repository.UserRepositoryImpl
 import com.hungry.binareats.databinding.ActivitySplashBinding
-import com.hungry.binareats.presentation.feature.MainActivity
+import com.hungry.binareats.presentation.feature.main.MainActivity
 import com.hungry.binareats.presentation.feature.register.RegisterActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
