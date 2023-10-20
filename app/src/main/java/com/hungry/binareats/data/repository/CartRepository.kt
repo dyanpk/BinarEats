@@ -3,6 +3,7 @@ import com.hungry.binareats.data.local.database.datasource.CartDataSource
 import com.hungry.binareats.data.local.database.entity.CartEntity
 import com.hungry.binareats.data.local.database.mapper.toCartEntity
 import com.hungry.binareats.data.local.database.mapper.toCartList
+import com.hungry.binareats.data.network.api.datasource.BinarEatsDataSource
 import com.hungry.binareats.model.Cart
 import com.hungry.binareats.model.Menu
 import com.hungry.binareats.utils.ResultWrapper
@@ -24,7 +25,8 @@ interface CartRepository {
 }
 
 class CartRepositoryImpl(
-    private val dataSource: CartDataSource
+    private val dataSource: CartDataSource,
+    private val binarEatsDataSource: BinarEatsDataSource
 ) : CartRepository {
 
     override fun getUserCartData(): Flow<ResultWrapper<Pair<List<Cart>, Double>>> {
@@ -98,5 +100,6 @@ class CartRepositoryImpl(
     override suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>> {
         return proceedFlow { dataSource.deleteCart(item.toCartEntity()) > 0 }
     }
+
 
 }

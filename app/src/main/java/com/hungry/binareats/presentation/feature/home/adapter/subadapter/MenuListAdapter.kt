@@ -5,14 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.hungry.binareats.databinding.ItemMenuBinding
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.hungry.binareats.core.ViewHolderBinder
+import com.hungry.binareats.databinding.ItemGridMenuBinding
+import com.hungry.binareats.databinding.ItemLinearMenuBinding
 import com.hungry.binareats.model.Menu
-import com.hungry.binareats.utils.toCurrencyFormat
+import com.hungry.binareats.presentation.feature.home.viewholder.GridFoodItemViewHolder
+import com.hungry.binareats.presentation.feature.home.viewholder.LinearFoodItemViewHolder
 
 class MenuListAdapter(
+    var layoutMode: AdapterLayoutMode,
     private val itemClick: (Menu) -> Unit
-) : RecyclerView.Adapter<MenuListAdapter.ItemMenuViewHolder>(){
+) : RecyclerView.Adapter<ViewHolder>(){
 
     private val dataDiffer =
         AsyncListDiffer(this, object : DiffUtil.ItemCallback<Menu>() {
@@ -35,33 +39,35 @@ class MenuListAdapter(
         dataDiffer.submitList(data)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemMenuViewHolder {
-        val binding = ItemMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ItemMenuViewHolder(binding, itemClick)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return when (viewType){
+            AdapterLayoutMode.GRID.ordinal -> {
+                GridFoodItemViewHolder(
+                    binding = ItemGridMenuBinding.inflate(
+                        LayoutInflater.from(parent.context),parent,false
+                    ), itemClick
+                )
+            }
+            else ->{
+                LinearFoodItemViewHolder(
+                    binding = ItemLinearMenuBinding.inflate(
+                        LayoutInflater.from(parent.context),parent,false
+                    ), itemClick
+                )
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder: ItemMenuViewHolder, position: Int) {
-        holder.bindView(dataDiffer.currentList[position])
+    override fun getItemViewType(position: Int): Int {
+        return layoutMode.ordinal
     }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        (holder as ViewHolderBinder<Menu>).bind(dataDiffer.currentList[position])
+    }
+
 
     override fun getItemCount(): Int = dataDiffer.currentList.size
 
 
-    class ItemMenuViewHolder(
-        private val binding: ItemMenuBinding,
-        val itemClick: (Menu) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bindView(item: Menu) {
-            with(item) {
-                binding.ivItemMenu.load(item.imgUrlMenu){
-                    crossfade(true)
-                }
-                binding.tvNameOfMenu.text = item.nameOfMenu
-                binding.tvPriceOfMenu.text = item.priceOfMenu?.toCurrencyFormat()
-                itemView.setOnClickListener { itemClick(this) }
-            }
-        }
-
-    }
 }

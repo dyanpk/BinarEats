@@ -23,6 +23,9 @@ class HomeViewModel(
     val menus : LiveData<ResultWrapper<List<Menu>>>
         get() = _menus
 
+    private val _navigateToDetailMenu = MutableLiveData<ResultWrapper<Menu>>()
+    val navigateToDetailMenu: LiveData<ResultWrapper<Menu>> = _navigateToDetailMenu
+
     fun getCategories(){
         viewModelScope.launch(Dispatchers.IO) {
             repo.getCategories().collect{
@@ -38,4 +41,5 @@ class HomeViewModel(
             }
         }
     }
+
 }
